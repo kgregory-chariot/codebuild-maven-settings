@@ -1,16 +1,24 @@
 <settings>
+
   <mirrors>
     <mirror>
       <id>nexus</id>
-      <mirrorOf>*</mirrorOf>
+      <mirrorOf>external:*</mirrorOf>
       <url>${env.NEXUS_GROUP_URL}</url>
     </mirror>
   </mirrors>
+
+  <servers>
+    <server>
+      <id>nexus</id>
+      <username>${env.NEXUS_DEPLOYMENT_USER}</username>
+      <password>${env.NEXUS_DEPLOYMENT_PASSWORD}</password>
+    </server>
+  </servers>
+
   <profiles>
     <profile>
       <id>nexus</id>
-      <!--Enable snapshots for the built in central repo to direct -->
-      <!--all requests to nexus via the mirror -->
       <repositories>
         <repository>
           <id>central</id>
@@ -30,7 +38,7 @@
     </profile>
   </profiles>
   <activeProfiles>
-    <!--make the profile active all the time -->
     <activeProfile>nexus</activeProfile>
   </activeProfiles>
+
 </settings>
